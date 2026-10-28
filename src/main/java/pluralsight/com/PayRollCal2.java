@@ -17,7 +17,12 @@ public class PayRollCal2 {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
             while (line != null) {
-                String[] linePart = line.split(Pattern.quote("|"));
+                Employee employee = parseEmployee(line);
+
+                System.out.printf("%d  %s  %f\n", employee.getEmployeeId(),  employee.getName(), employee.getGrossPay());
+
+                line = bufferedReader.readLine();
+
             }
 
         } catch (FileNotFoundException e) {
@@ -25,7 +30,17 @@ public class PayRollCal2 {
         } catch (IOException e) {
             System.out.println("Not sure what's up, some kinda I/O problem");
         }
+    }
+
+    private static Employee parseEmployee(String employeeCsv) {
+        String[] lineParts = employeeCsv.split(Pattern.quote("|"));
+
+        int id = Integer.parseInt(lineParts[0]);
+        String name = lineParts[1];
+        double hoursWorked = Double.parseDouble(lineParts[2]);
+        double payRate = Double.parseDouble(lineParts[3]);
 
 
+        return new Employee(id, name, (int) hoursWorked, payRate);
     }
 }
