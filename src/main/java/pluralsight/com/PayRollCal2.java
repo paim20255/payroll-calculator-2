@@ -1,18 +1,23 @@
 package pluralsight.com;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.regex.Pattern;
 
 public class PayRollCal2 {
     public static void main(String[] args) {
         String fileName = "src/main/resources/employees.csv";
+        String outputFileName = "src/main/resources/payroll.csv";
 
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            FileWriter writer = new FileWriter(outputFileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            bufferedWriter.write("id|name|gross pay");
+            bufferedWriter.write("111|Cameron Tay|3277.65");
+            bufferedWriter.write("222|James Tee|2150.00");
 
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
@@ -22,6 +27,8 @@ public class PayRollCal2 {
                 System.out.printf("%d  %s  %f\n", employee.getEmployeeId(),  employee.getName(), employee.getGrossPay());
 
                 line = bufferedReader.readLine();
+
+                bufferedWriter.close();
 
             }
 
