@@ -15,19 +15,24 @@ public class PayRollCal2 {
             FileWriter writer = new FileWriter(outputFileName);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-            bufferedWriter.write("id|name|gross pay");
-            bufferedWriter.write("111|Cameron Tay|3277.65");
-            bufferedWriter.write("222|James Tee|2150.00");
+            // create the header
+            bufferedWriter.write("id|name|gross pay\n");
+
 
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
             while (line != null) {
                 Employee employee = parseEmployee(line);
 
-                System.out.printf("%d  %s  %f\n", employee.getEmployeeId(),  employee.getName(), employee.getGrossPay());
+
+                bufferedWriter.write(String.format("%d|%s|%.2f\n",
+                        employee.getEmployeeId(),
+                        employee.getName(),
+                        employee.getGrossPay()));
 
                 line = bufferedReader.readLine();
 
+                bufferedReader.close();
                 bufferedWriter.close();
 
             }
