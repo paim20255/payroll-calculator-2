@@ -32,10 +32,12 @@ public class PayRollCal2 {
 
                 line = bufferedReader.readLine();
 
-                bufferedReader.close();
-                bufferedWriter.close();
+               // bufferedReader.close();
+               // bufferedWriter.close();
 
             }
+            bufferedReader.close();
+            bufferedWriter.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("Sorry mate, that file doesn't exist: " + fileName);
